@@ -3,7 +3,7 @@ package io.jzheaux.springsecurity.resolutions;
 import javax.persistence.*;
 import java.util.UUID;
 
-@Entity(name="authorities")
+@Entity(name = "authorities")
 public class UserAuthority {
 
     @Id

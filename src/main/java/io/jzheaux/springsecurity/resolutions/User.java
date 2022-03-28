@@ -23,7 +23,7 @@ public class User implements Serializable {
     @Column
     boolean enabled = true;
 
-    @OneToMany(fetch= FetchType.EAGER, cascade=CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     Collection<UserAuthority> userAuthorities = new ArrayList<>();
 
     public User() {
