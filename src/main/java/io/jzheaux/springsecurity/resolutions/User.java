@@ -14,7 +14,7 @@ public class User implements Serializable {
     @GeneratedValue(generator = "UUID")
     UUID id;
 
-    @Column
+    @Column(name="username")
     String username;
 
     @Column
@@ -23,7 +23,10 @@ public class User implements Serializable {
     @Column
     boolean enabled = true;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Column(name = "full_name")
+    String fullName;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     Collection<UserAuthority> userAuthorities = new ArrayList<>();
 
     public User() {
@@ -40,6 +43,7 @@ public class User implements Serializable {
         this.username = user.username;
         this.password = user.password;
         this.enabled = user.enabled;
+        this.fullName = user.fullName;
         this.userAuthorities = user.userAuthorities;
     }
 
@@ -75,12 +79,19 @@ public class User implements Serializable {
         this.enabled = enabled;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
     public Collection<UserAuthority> getUserAuthorities() {
-        return Collections.unmodifiableCollection(this.userAuthorities);
+        return userAuthorities;
     }
 
     public void grantAuthority(String authority) {
-        UserAuthority userAuthority = new UserAuthority(this, authority);
-        this.userAuthorities.add(userAuthority);
+        this.userAuthorities.add(new UserAuthority(this, authority));
     }
 }

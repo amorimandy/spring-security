@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import java.util.Collection;
 import java.util.HashSet;
 
-
 public class UserRepositoryUserDetailsService implements UserDetailsService {
     private final UserRepository users;
 
